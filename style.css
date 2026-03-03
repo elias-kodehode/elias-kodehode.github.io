@@ -1,0 +1,202 @@
+:root{
+    --padding: 20px;
+    --shade1:#B65B11;
+    --shade2:#92480D;
+    --shade3:#DB6D14;
+}
+
+body{
+    margin: 0;
+    padding:0;
+    font-family: "Inter", sans-serif;
+    line-height: 1.6;
+    box-sizing: border-box;
+    background: #92480D;
+    background: linear-gradient(180deg, rgba(146, 72, 13, 1) 0%, rgba(219, 109, 20, 1) 12%, rgba(182, 91, 17, 1) 100%);
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* height: 200vh; */
+}
+
+
+.pris{
+    font-weight: 700;
+    text-align: center;
+}
+
+
+
+/*AI GENERATED :) */
+.menu-divider {
+    --line-width:80%;
+    border-top: 1px solid var(--shade2);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    text-align: center;
+    width: var(--line-width);
+  }
+
+.menu-divider legend h2{
+    --line-width:5px;
+    margin-left: var(--line-width);
+    margin-right: var(--line-width);
+}
+
+
+/* Header */
+header.header {
+    font-size: 2em;
+    padding: var(--padding);
+    text-align: center;
+    /* border-bottom: 1px solid var(--shade2); */
+    margin-bottom: 25px;
+    color: white;
+    background-image: url(./images/kafe.png);
+    background-position: center;
+    background-size: cover;
+    text-shadow: 2px 2px black;
+    /* align-items: center; */
+}
+
+
+.header-divider {
+    border-top: 1px solid white;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    text-align: center;
+    /* width: 50%; */
+}
+
+.hero{
+    text-align: center;
+}
+/* End Header */
+
+
+/* Dagens */
+
+
+section.dagens{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(./images/dagens.png);
+    background-position: center;
+    background-size: cover;
+    color: white;
+    border-radius: 15px;
+    /* margin: auto auto auto auto; */
+    margin: auto;
+    text-shadow: 2px 2px black;
+}
+
+
+.dagens-card{
+    /* border-top: solid 1px var(--shade2); */
+    /* border-bottom: solid 1px var(--shade2); */
+    
+    justify-items: center;
+}
+
+.dagens-card header{
+
+    text-align: center;
+}
+
+
+.dagens article{
+    /* border: 1px solid var(--shade2); */
+    /* border-bottom: 1px solid var(--shade2); */
+    padding: 25px;
+
+}
+/* End Dagens */
+
+
+
+/* kaffe-meny  */
+.kaffe-meny{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid var(--shade2);  */
+}
+.menu-item{
+    border-bottom: 1px solid var(--shade2);
+    padding: 25px;
+}
+
+.menu-item:last-child{
+    border-bottom: 0;
+    margin-bottom: 10px;
+}
+.menu-item header{
+    text-align: center;
+    text-decoration: underline;
+}
+
+img.item-image{
+    min-width: 25px;
+    min-height: 25px;
+}
+/* End kaffe-meny */
+
+
+
+.frokost-meny{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.middag-meny{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Footer */
+main section:last-child{
+    margin-bottom: 100px;
+}
+footer{
+    font-size: .7rem;
+    padding: 0px var(--padding);
+    display: flex;
+    flex-direction: row;
+    border-top: 3px solid var(--shade2);
+    justify-content: space-evenly;
+}
+
+.contact ul{
+    list-style-type: none;
+    text-align: left;
+}
+.opening-hours ul{
+    list-style-type: none;
+}
+/* End Footer */
+
+
+@media (min-width:1000px) {
+
+    .menu-divider{
+        border-top: 2px solid var(--shade2);
+    }
+
+    footer{
+        justify-content: space-around;
+        font-size: 1rem;
+    }
+}
