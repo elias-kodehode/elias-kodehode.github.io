@@ -12,16 +12,13 @@ body{
     line-height: 1.6;
     box-sizing: border-box;
     background: #92480D;
-    /* background: linear-gradient(180deg, rgba(146, 72, 13, 1) 0%, rgba(219, 109, 20, 1) 12%, rgba(182, 91, 17, 1) 100%);  */
+    background: linear-gradient(180deg, rgba(146, 72, 13, 1) 0%, rgba(219, 109, 20, 1) 12%, rgba(182, 91, 17, 1) 100%);
 }
 
 .container{
-    padding-top: 25px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    /* border-bottom: 2px solid black; */
-    background: linear-gradient(180deg, rgba(146, 72, 13, 1) 0%, rgba(219, 109, 20, 1) 12%, rgba(182, 91, 17, 1) 100%);
     /* height: 200vh; */
 }
 
@@ -32,24 +29,40 @@ body{
 }
 
 
-
-/*AI GENERATED :) */
-.menu-divider {
-    --line-width:80%;
-    border-top: 1px solid var(--shade2);
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    text-align: center;
-    width: var(--line-width);
+/*AI GENERATED*/
+.divider {
+    --thickness:2px;
+    --divider-gap:12px;
+    display: flex;
+    align-items: center;
+    gap: var(--divider-gap);
+    margin: 2rem 0;
+    font-weight: 600;
   }
+  
 
-.menu-divider legend h2{
-    --line-width:5px;
-    margin-left: var(--line-width);
-    margin-right: var(--line-width);
+.divider::before{
+    content: "";
+    flex: 1;
+    height: var(--thickness);
+    background: linear-gradient(to right, transparent, var(--shade2));
 }
 
+.divider::after{
+    content: "";
+    flex: 1;
+    height: var(--thickness);
+    background: linear-gradient(to left, transparent, var(--shade2));
+}
+
+
+.menu-divider{
+    width: 100%;
+}
+
+main{
+    padding: 10px;
+}
 
 /* Header */
 header.header {
@@ -57,24 +70,15 @@ header.header {
     padding: var(--padding);
     text-align: center;
     /* border-bottom: 1px solid var(--shade2); */
-    /* margin-bottom: 25px; */
+    margin-bottom: 25px;
     color: white;
     background-image: url(./images/kafe.png);
     background-position: center;
-    background-size: cover;
+    background-size:cover;
     text-shadow: 2px 2px black;
     /* align-items: center; */
 }
 
-
-.header-divider {
-    border-top: 1px solid white;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    text-align: center;
-    /* width: 50%; */
-}
 
 .hero{
     text-align: center;
@@ -174,7 +178,6 @@ main section:last-child{
     margin-bottom: 100px;
 }
 footer{
-    background-color: #92480D;
     font-size: .7rem;
     padding: 0px var(--padding);
     display: flex;
@@ -195,9 +198,9 @@ footer{
 
 @media (min-width:1000px) {
 
-    .menu-divider{
+    /* .menu-divider{
         border-top: 2px solid var(--shade2);
-    }
+    } */
 
     footer{
         justify-content: space-around;
