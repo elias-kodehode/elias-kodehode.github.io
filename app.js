@@ -59,6 +59,25 @@ const breakfastList = [
     }
 ];
 
+const desertList = [
+    {
+        "title": "Ostekake",
+        "description": "Veldig god ostekake",
+        "price": "59,-"
+    },
+    {
+        "title": "Muffins",
+        "description": "Veldig god Muffins",
+        "price": "32,-"
+    },    
+    {
+        "title": "Sjokolade kake",
+        "description": "Veldig god sjokolade kake",
+        "price": "59,-"
+    }
+
+];
+
 const validateJson = true;
 // Test to see if the browser supports the HTML template element by checking
 // for the presence of the template element's content attribute.
@@ -67,6 +86,7 @@ if("content" in document.createElement("template")){
     try{
         instantiateTemplate("#kaffe", coffeeList);
         instantiateTemplate("#frokost", breakfastList)
+        instantiateTemplate("#dessert", desertList)
     }catch(error){
         console.error(error);
     }
@@ -77,17 +97,18 @@ if("content" in document.createElement("template")){
 
 function instantiateTemplate(parentQuery, list){
     //parent
-    var parent = document.querySelector(parentQuery);
+    const parent = document.querySelector(parentQuery.toString() + " dl");
+    
     //template to be copied
-    var template = document.querySelector("#menu-item-template");
+    const template = document.querySelector("#menu-item-template");
     for (let i = 0; i < list.length; i++) {
 
         //Instance of template
-        var clone = document.importNode(template.content, true);
+        let clone = document.importNode(template.content, true);
 
-        var header = clone.querySelector(".menu-item-name");
-        var price = clone.querySelector(".pris")
-        var description = clone.querySelector(".beskrivelse");
+        let header = clone.querySelector(".menu-item-name");
+        let price = clone.querySelector(".pris")
+        let description = clone.querySelector(".beskrivelse");
 
         if(validateJson){
             
