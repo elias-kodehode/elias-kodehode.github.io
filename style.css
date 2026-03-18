@@ -102,8 +102,8 @@ nav a{
 
 nav a:hover{
     /* background-color: gray; */
-    backdrop-filter: blur(2px);
-    background-color: rgba(219, 109, 20, .3);
+    /* backdrop-filter: blur(2px);
+    background-color: rgba(219, 109, 20, .3); */
 }
 
 
@@ -258,5 +258,10 @@ footer{
     footer{
         justify-content: space-around;
         font-size: 1rem;
+    }
+
+    main{
+        width: 50%;
+        margin-left: 25%;
     }
 }
