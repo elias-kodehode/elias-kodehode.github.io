@@ -9,7 +9,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "./components/ui/button";
-import { Link } from "lucide-react";
 import { useTheme } from "./components/theme-provider";
 import { Menu } from "lucide-react";
 export default function MainLayout({
@@ -69,7 +68,7 @@ function NavBar({ scrolled }: { scrolled: boolean }) {
       </a>
 
       <div className="flex items-center gap-2">
-        <HamburgerDropdown/>
+        <HamburgerDropdown />
         {/* <a href="/" className="rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:bg-accent hover:text-accent-foreground">
           Home
         </a> */}
@@ -78,19 +77,18 @@ function NavBar({ scrolled }: { scrolled: boolean }) {
   );
 }
 
-
 function HamburgerDropdown() {
   const { setTheme } = useTheme();
 
-
   return (
     <DropdownMenu modal={false}>
-      <DropdownMenuTrigger render={
-        <Button variant="outline" size="icon" className="fixed right-4 top-4 z-50 rounded-2xl"/>
-        }>
-
-          <Menu />
-          <span className="sr-only">Open menu</span>
+      <DropdownMenuTrigger
+        render={
+          <Button variant="outline" size="icon" className="rounded-2xl" />
+        }
+      >
+        <Menu />
+        <span className="sr-only">Open menu</span>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="rounded-none">
@@ -98,8 +96,13 @@ function HamburgerDropdown() {
           <DropdownMenuLabel>My Socials</DropdownMenuLabel>
 
           <DropdownMenuItem>
-          <a href="https://github.com/elias-kodehode" target="_blank"rel="noopener noreferrer">
-          Github</a>
+            <a
+              href="https://github.com/elias-kodehode"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Github
+            </a>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <a href="">LinkedIn</a>

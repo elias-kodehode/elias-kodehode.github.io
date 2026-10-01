@@ -28,7 +28,6 @@ function Shadow({ direction }: { direction: Direction }) {
   return (
     <div
       className={`pointer-events-none absolute inset-y-0 z-10 w-8 sm:w-12
-        hover:w-16 transition-all duration-300
         ${
           isLeft ? "left-0 bg-linear-to-r" : "right-0 bg-linear-to-l"
         } from-background to-transparent`}
