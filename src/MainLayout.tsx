@@ -85,15 +85,12 @@ function HamburgerDropdown() {
 
   return (
     <DropdownMenu modal={false}>
-      <DropdownMenuTrigger>
-        <Button
-          variant="outline"
-          size="icon"
-          className="fixed right-4 top-4 z-50 rounded-none rounded-2xl"
-        >
+      <DropdownMenuTrigger render={
+        <Button variant="outline" size="icon" className="fixed right-4 top-4 z-50 rounded-2xl"/>
+        }>
+
           <Menu />
           <span className="sr-only">Open menu</span>
-        </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="rounded-none">

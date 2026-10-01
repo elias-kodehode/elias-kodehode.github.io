@@ -1,38 +1,14 @@
 import { DragScroll } from "./components/DragScroll";
+import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 import MainLayout from "./MainLayout";
 
 export default function App() {
   return (
     <MainLayout>
       <div className="relative isolate overflow-hidden">
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-8 sm:py-24">
-      <div className="relative">
-        <Shadow direction="right" />
-
-        <DragScroll>
-          <div className="flex gap-4 py-4 sm:gap-6">
-            <div className="w-[85%] shrink-0 sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]">
-              <Card icon="*" title="C#/.NET" description="-" />
-            </div>
-
-            <div className="w-[85%] shrink-0 sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]">
-              <Card icon="*" title="JS/TS" description="React" />
-            </div>
-
-            <div className="w-[85%] shrink-0 sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]">
-              <Card icon="*" title="Docker" description="-" />
-            </div>
-
-            <div className="w-[85%] shrink-0 sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]">
-              <Card icon="*" title="Aspire" description="-" />
-            </div>
-          </div>
-        </DragScroll>
-
-        <Shadow direction="left" />
-      </div>
-      </section>
-        {/* Footer */}
+        <Carousel />
+        <ProjectsGrid />
+        <AboutMe />
         <footer className="border-t">
           <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-8">
             <span>Elias Sørensen.</span>
@@ -44,7 +20,6 @@ export default function App() {
   );
 }
 
-
 type Direction = "left" | "right";
 
 function Shadow({ direction }: { direction: Direction }) {
@@ -52,14 +27,16 @@ function Shadow({ direction }: { direction: Direction }) {
 
   return (
     <div
-      className={`pointer-events-none absolute inset-y-0 z-10 w-8 sm:w-12 ${
-        isLeft ? "left-0 bg-linear-to-r" : "right-0 bg-linear-to-l"
-      } from-background to-transparent`}
+      className={`pointer-events-none absolute inset-y-0 z-10 w-8 sm:w-12
+        hover:w-16 transition-all duration-300
+        ${
+          isLeft ? "left-0 bg-linear-to-r" : "right-0 bg-linear-to-l"
+        } from-background to-transparent`}
     />
   );
 }
 
-function Card({
+function TechCard({
   icon,
   title,
   description,
@@ -77,5 +54,73 @@ function Card({
       <h3 className="text-xl font-semibold">{title}</h3>
       <p className="mt-3 leading-7 text-muted-foreground">{description}</p>
     </div>
+  );
+}
+
+function Carousel() {
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-8 sm:py-24">
+      <div className="relative px-2">
+        <Shadow direction="right" />
+        <DragScroll>
+          <div className="flex gap-4 py-4 sm:gap-6">
+            <div className="w-[85%] shrink-0 sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]">
+              <TechCard icon="*" title="C#/.NET" description="-" />
+            </div>
+
+            <div className="w-[85%] shrink-0 sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]">
+              <TechCard icon="*" title="JS/TS" description="React" />
+            </div>
+
+            <div className="w-[85%] shrink-0 sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]">
+              <TechCard icon="*" title="Docker" description="-" />
+            </div>
+
+            <div className="w-[85%] shrink-0 sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]">
+              <TechCard icon="*" title="Aspire" description="-" />
+            </div>
+          </div>
+        </DragScroll>
+        <Shadow direction="left" />
+      </div>
+    </section>
+  );
+}
+
+function ProjectsGrid() {
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-8 sm:py-24">
+      <div className="relative px-2">
+        <Shadow direction="left" />
+        <Card className="w-full rounded-2xl border bg-card">
+          <CardHeader>
+            <CardTitle>Projects</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p>Test</p>
+          </CardContent>
+        </Card>
+        <Shadow direction="right" />
+      </div>
+    </section>
+  );
+}
+
+function AboutMe() {
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-8 sm:py-24">
+      <div className="relative px-2">
+        <Shadow direction="left" />
+        <Card className="w-full rounded-2xl border bg-card">
+          <CardHeader>
+            <CardTitle>About Me</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p>Test</p>
+          </CardContent>
+        </Card>
+        <Shadow direction="right" />
+      </div>
+    </section>
   );
 }
