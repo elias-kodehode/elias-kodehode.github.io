@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link, Outlet, useLocation } from "react-router";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,13 +12,14 @@ import {
 import { Button } from "./components/ui/button";
 import { useTheme } from "./components/theme-provider";
 import { Menu } from "lucide-react";
-export default function MainLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function MainLayout() {
   const mainRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0 });
+  }, [pathname]);
 
   useEffect(() => {
     const main = mainRef.current;
@@ -49,7 +51,7 @@ export default function MainLayout({
       </header>
 
       <main ref={mainRef} className="flex-1 min-h-0 overflow-y-auto">
-        {children}
+        <Outlet />
       </main>
     </div>
   );
@@ -63,9 +65,9 @@ function NavBar({ scrolled }: { scrolled: boolean }) {
         scrolled ? "py-3" : "py-5",
       ].join(" ")}
     >
-      <a href="/" className="font-heading text-xl font-semibold">
+      <Link to="/" className="font-heading text-xl font-semibold">
         Elias Sørensen
-      </a>
+      </Link>
 
       <div className="flex items-center gap-2">
         <HamburgerDropdown />
