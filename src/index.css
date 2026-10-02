@@ -121,10 +121,33 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
   }
 
   html {
     @apply font-sans;
+  }
+
+  button,
+  a {
+    @apply focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring;
+  }
+
+  ::selection {
+    background: oklch(0.65 0.16 250 / 28%);
+    color: inherit;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -1,1 +1,1 @@
-[View my portfolio](https://elias-kodehode.github.io/portfolio/)
+[View my portfolio](https://elias-kodehode.github.io/)

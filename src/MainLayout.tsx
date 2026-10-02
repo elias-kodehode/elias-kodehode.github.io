@@ -11,7 +11,19 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "./components/ui/button";
 import { useTheme } from "./components/theme-provider";
-import { Menu } from "lucide-react";
+import { GitBranch, Menu } from "lucide-react";
+
+const navigation = [
+  { label: "Skills", id: "skills" },
+  { label: "Projects", id: "projects" },
+  { label: "About", id: "about" },
+  { label: "Contact", id: "contact" },
+];
+
+function scrollToSection(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+}
+
 export default function MainLayout() {
   const mainRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -38,19 +50,19 @@ export default function MainLayout() {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="flex h-screen flex-col">
       <header
         className={[
           "z-50 shrink-0 border-b transition-all duration-300",
           scrolled
-            ? "bg-background/80 shadow-lg backdrop-blur-xl"
+            ? "bg-background/80 shadow-sm backdrop-blur-xl"
             : "bg-background",
         ].join(" ")}
       >
         <NavBar scrolled={scrolled} />
       </header>
 
-      <main ref={mainRef} className="flex-1 min-h-0 overflow-y-auto">
+      <main ref={mainRef} className="min-h-0 flex-1 overflow-y-auto scroll-smooth">
         <Outlet />
       </main>
     </div>
@@ -65,15 +77,39 @@ function NavBar({ scrolled }: { scrolled: boolean }) {
         scrolled ? "py-3" : "py-5",
       ].join(" ")}
     >
-      <Link to="/" className="font-heading text-xl font-semibold">
+      <Link
+        to="/"
+        onClick={() => scrollToSection("home")}
+        className="font-heading text-xl font-semibold tracking-tight"
+      >
         Elias Sørensen
       </Link>
 
-      <div className="flex items-center gap-2">
+      <div className="hidden items-center gap-1 md:flex">
+        {navigation.map((item) => (
+          <button
+            key={item.id}
+            type="button"
+            onClick={() => scrollToSection(item.id)}
+            className="rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:bg-accent hover:text-accent-foreground"
+          >
+            {item.label}
+          </button>
+        ))}
+        <a
+          href="https://github.com/elias-kodehode"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="GitHub profile"
+          className="ml-2 flex h-9 w-9 items-center justify-center rounded-full border transition hover:bg-accent"
+        >
+          <GitBranch className="h-4 w-4" />
+        </a>
         <HamburgerDropdown />
-        {/* <a href="/" className="rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:bg-accent hover:text-accent-foreground">
-          Home
-        </a> */}
+      </div>
+
+      <div className="md:hidden">
+        <HamburgerDropdown />
       </div>
     </nav>
   );
@@ -95,7 +131,21 @@ function HamburgerDropdown() {
 
       <DropdownMenuContent className="rounded-none">
         <DropdownMenuGroup>
-          <DropdownMenuLabel>My Socials</DropdownMenuLabel>
+          <DropdownMenuLabel>Navigate</DropdownMenuLabel>
+          {navigation.map((item) => (
+            <DropdownMenuItem
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+            >
+              {item.label}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuGroup>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>Social</DropdownMenuLabel>
 
           <DropdownMenuItem>
             <a
@@ -103,11 +153,8 @@ function HamburgerDropdown() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Github
+              GitHub
             </a>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <a href="">LinkedIn</a>
           </DropdownMenuItem>
         </DropdownMenuGroup>
 
