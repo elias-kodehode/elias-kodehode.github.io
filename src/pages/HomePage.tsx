@@ -10,64 +10,49 @@ import {
   ServerCog,
   Sparkles,
 } from "lucide-react";
+import { useLanguage } from "@/i18n/use-language";
 
 const skills = [
   {
-    title: "C# & .NET",
-    description: "APIs, authentication, LINQ, and maintainable backend services.",
+    id: "csharp",
     icon: ServerCog,
   },
   {
-    title: "TypeScript & React",
-    description: "Responsive interfaces built with reusable, accessible components.",
+    id: "react",
     icon: Braces,
   },
   {
-    title: "Data & APIs",
-    description: "REST integrations, structured data, and end-to-end application flows.",
+    id: "data",
     icon: Database,
   },
   {
-    title: "Docker & Aspire",
-    description: "Local orchestration and consistent development environments.",
+    id: "docker",
     icon: Container,
   },
-];
+] as const;
 
 const projects = [
   {
-    title: "Gutendex v2",
-    description:
-      "A TypeScript application built around the Gutendex book catalogue API, focused on discovering and working with public book data.",
-    tags: ["TypeScript", "React", "REST API"],
+    id: "gutendex",
     href: "https://github.com/elias-kodehode/gutendexv2",
     number: "01",
   },
   {
-    title: "CMS REST API",
-    description:
-      "A C# REST API for managing content and prizes, created as an advanced backend project with a clear API-first structure.",
-    tags: ["C#", ".NET", "REST API"],
+    id: "cms",
     href: "https://github.com/elias-kodehode/cms-rest-api",
     number: "02",
   },
   {
-    title: "Personal Data Dashboard",
-    description:
-      "A JavaScript dashboard project focused on presenting personal user data through a clear, usable interface.",
-    tags: ["JavaScript", "Dashboard", "Data"],
+    id: "dashboard",
     href: "https://github.com/elias-kodehode/personlig-data-dashboard",
     number: "03",
   },
   {
-    title: "AI + C# Integration",
-    description:
-      "An experiment in connecting AI capabilities to a C# application and shaping the result into a usable software experience.",
-    tags: ["C#", ".NET", "AI"],
+    id: "ai",
     href: "https://github.com/elias-kodehode/csharp-ai-integration",
     number: "04",
   },
-];
+] as const;
 
 function scrollToSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -87,6 +72,9 @@ export default function HomePage() {
 }
 
 function Hero() {
+  const { t } = useLanguage();
+  const copy = t.home.hero;
+
   return (
     <section
       id="home"
@@ -96,18 +84,17 @@ function Hero() {
       <div className="relative max-w-4xl">
         <div className="mb-8 inline-flex items-center gap-2 rounded-full border bg-card/70 px-4 py-2 text-sm text-muted-foreground shadow-sm backdrop-blur">
           <span className="h-2 w-2 rounded-full bg-emerald-500" />
-          Full-stack developer
+          {copy.role}
         </div>
 
         <p className="mb-4 text-sm font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-          Hello, I&apos;m Elias Sørensen
+          {copy.greeting}
         </p>
         <h1 className="font-heading text-5xl leading-[1.05] font-semibold tracking-tight sm:text-7xl lg:text-8xl">
-          I build useful software for the web.
+          {copy.title}
         </h1>
         <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl">
-          I work across modern frontends and .NET backends, turning ideas into
-          clear, dependable digital products.
+          {copy.description}
         </p>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -116,7 +103,7 @@ function Hero() {
             onClick={() => scrollToSection("projects")}
             className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition hover:-translate-y-0.5 hover:shadow-lg"
           >
-            View my work
+            {copy.viewWork}
             <ArrowDown className="h-4 w-4" />
           </button>
           <a
@@ -126,7 +113,7 @@ function Hero() {
             className="inline-flex items-center justify-center gap-2 rounded-full border bg-background px-6 py-3 font-medium transition hover:bg-accent"
           >
             <GitBranch className="h-4 w-4" />
-            GitHub profile
+            {copy.githubProfile}
           </a>
         </div>
       </div>
@@ -157,23 +144,26 @@ function SectionHeading({
 }
 
 function Skills() {
+  const { t } = useLanguage();
+  const copy = t.home.skills;
+
   return (
     <section id="skills" className="border-y bg-muted/30">
       <div className="mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-32">
         <SectionHeading
-          eyebrow="What I work with"
-          title="From interface to infrastructure."
-          description="A practical toolkit for building complete web applications, with an emphasis on readable code and reliable foundations."
+          eyebrow={copy.eyebrow}
+          title={copy.title}
+          description={copy.description}
         />
         <div className="grid gap-px overflow-hidden rounded-3xl border bg-border sm:grid-cols-2 lg:grid-cols-4">
-          {skills.map(({ title, description, icon: Icon }) => (
-            <article key={title} className="bg-card p-7 sm:p-8">
+          {skills.map(({ id, icon: Icon }) => (
+            <article key={id} className="bg-card p-7 sm:p-8">
               <div className="mb-8 flex h-11 w-11 items-center justify-center rounded-xl border bg-background">
                 <Icon className="h-5 w-5" />
               </div>
-              <h3 className="text-lg font-semibold">{title}</h3>
+              <h3 className="text-lg font-semibold">{copy.items[id].title}</h3>
               <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                {description}
+                {copy.items[id].description}
               </p>
             </article>
           ))}
@@ -184,13 +174,16 @@ function Skills() {
 }
 
 function Projects() {
+  const { t } = useLanguage();
+  const copy = t.home.projects;
+
   return (
     <section id="projects" className="mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-32">
       <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
         <SectionHeading
-          eyebrow="Selected work"
-          title="Projects that show how I build."
-          description="A selection of frontend, backend, and full-stack work from my public GitHub repositories."
+          eyebrow={copy.eyebrow}
+          title={copy.title}
+          description={copy.description}
         />
         <a
           href="https://github.com/elias-kodehode?tab=repositories"
@@ -198,7 +191,7 @@ function Projects() {
           rel="noreferrer"
           className="mb-12 inline-flex shrink-0 items-center gap-2 text-sm font-semibold hover:underline"
         >
-          All repositories
+          {copy.allRepositories}
           <ArrowUpRight className="h-4 w-4" />
         </a>
       </div>
@@ -206,7 +199,7 @@ function Projects() {
       <div className="grid gap-5 md:grid-cols-2">
         {projects.map((project) => (
           <a
-            key={project.title}
+            key={project.id}
             href={project.href}
             target="_blank"
             rel="noreferrer"
@@ -221,12 +214,14 @@ function Projects() {
               </span>
             </div>
             <div className="mt-auto pt-12">
-              <h3 className="font-heading text-3xl font-semibold">{project.title}</h3>
+              <h3 className="font-heading text-3xl font-semibold">
+                {copy.items[project.id].title}
+              </h3>
               <p className="mt-4 leading-7 text-muted-foreground">
-                {project.description}
+                {copy.items[project.id].description}
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
+                {copy.items[project.id].tags.map((tag) => (
                   <span
                     key={tag}
                     className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
@@ -244,31 +239,27 @@ function Projects() {
 }
 
 function About() {
+  const { t } = useLanguage();
+  const copy = t.home.about;
+
   return (
     <section id="about" className="border-y bg-primary text-primary-foreground">
       <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 sm:px-8 sm:py-32 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <div>
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] opacity-60">
-            About me
+            {copy.eyebrow}
           </p>
           <h2 className="font-heading text-4xl font-semibold sm:text-5xl">
-            Curious by nature. Practical by choice.
+            {copy.title}
           </h2>
         </div>
         <div className="space-y-6 text-lg leading-8 opacity-80">
-          <p>
-            I&apos;m Elias, a developer who enjoys understanding the whole product—from
-            the interface people use to the services and data behind it.
-          </p>
-          <p>
-            My projects span React, TypeScript, C#, .NET, APIs, and containerized
-            development. I learn by building, testing ideas, and improving the details
-            that make software easier to use and maintain.
-          </p>
+          <p>{copy.introduction}</p>
+          <p>{copy.description}</p>
           <div className="grid grid-cols-2 gap-4 pt-5 sm:grid-cols-3">
-            <AboutItem icon={Code2} label="Clean code" />
-            <AboutItem icon={Layers3} label="Full stack" />
-            <AboutItem icon={Sparkles} label="Always learning" />
+            <AboutItem icon={Code2} label={copy.cleanCode} />
+            <AboutItem icon={Layers3} label={copy.fullStack} />
+            <AboutItem icon={Sparkles} label={copy.alwaysLearning} />
           </div>
         </div>
       </div>
@@ -286,20 +277,22 @@ function AboutItem({ icon: Icon, label }: { icon: typeof Code2; label: string })
 }
 
 function Contact() {
+  const { t } = useLanguage();
+  const copy = t.home.contact;
+
   return (
     <section id="contact" className="mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-32">
       <div className="relative overflow-hidden rounded-3xl border bg-card px-7 py-16 text-center shadow-sm sm:px-12 sm:py-24">
         <div className="pointer-events-none absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
         <div className="relative mx-auto max-w-2xl">
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            Let&apos;s connect
+            {copy.eyebrow}
           </p>
           <h2 className="font-heading text-4xl font-semibold tracking-tight sm:text-6xl">
-            Have a project or opportunity in mind?
+            {copy.title}
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
-            Take a look at my work and get in touch through GitHub. I&apos;d be happy to
-            hear what you&apos;re building.
+            {copy.description}
           </p>
           <a
             href="https://github.com/elias-kodehode"
@@ -308,7 +301,7 @@ function Contact() {
             className="mt-9 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition hover:-translate-y-0.5 hover:shadow-lg"
           >
             <GitBranch className="h-4 w-4" />
-            Connect on GitHub
+            {copy.viewGithub}
           </a>
         </div>
       </div>
@@ -317,6 +310,8 @@ function Contact() {
 }
 
 function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="border-t">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-8">
@@ -326,7 +321,7 @@ function Footer() {
           onClick={() => scrollToSection("home")}
           className="inline-flex items-center gap-2 transition hover:text-foreground"
         >
-          Back to top
+          {t.home.footer.backToTop}
           <ArrowDown className="h-4 w-4 rotate-180" />
         </button>
       </div>
