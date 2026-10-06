@@ -33,24 +33,29 @@ const skills = [
 
 const projects = [
   {
+    id: "ecommerce",
+    href: "https://github.com/elias-kodehode/ECommerce",
+    number: "01",
+  },
+  {
     id: "gutendex",
     href: "https://github.com/elias-kodehode/gutendexv2",
-    number: "01",
+    number: "02",
   },
   {
     id: "cms",
     href: "https://github.com/elias-kodehode/cms-rest-api",
-    number: "02",
+    number: "03",
   },
   {
     id: "dashboard",
     href: "https://github.com/elias-kodehode/personlig-data-dashboard",
-    number: "03",
+    number: "04",
   },
   {
     id: "ai",
     href: "https://github.com/elias-kodehode/csharp-ai-integration",
-    number: "04",
+    number: "05",
   },
 ] as const;
 

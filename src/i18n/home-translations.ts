@@ -39,6 +39,12 @@ const en = {
       "A selection of frontend, backend, and full-stack work from my public GitHub repositories.",
     allRepositories: "All repositories",
     items: {
+      ecommerce: {
+        title: "ECommerce",
+        description:
+          "An e-commerce API built with .NET 10, featuring product management, validation, and paginated listings with PostgreSQL, Entity Framework Core, and Aspire.",
+        tags: ["C#", ".NET 10", "PostgreSQL", "EF Core", "Aspire"],
+      },
       gutendex: {
         title: "Gutendex v2",
         description:
@@ -129,6 +135,12 @@ const nb = {
       "Et utvalg av frontend-, backend- og fullstack-prosjekter fra mine offentlige GitHub-repositorier.",
     allRepositories: "Alle repositorier",
     items: {
+      ecommerce: {
+        title: "ECommerce",
+        description:
+          "Et API for netthandel bygget med .NET 10, med produktadministrasjon, validering og paginerte produktlister, samt PostgreSQL, Entity Framework Core og Aspire.",
+        tags: ["C#", ".NET 10", "PostgreSQL", "EF Core", "Aspire"],
+      },
       gutendex: {
         title: "Gutendex v2",
         description:
